@@ -11,7 +11,7 @@ import { useUserDataContext } from "../../context/UserDataContext";
 
 export const Zenith = () => {
   const root = document.documentElement;
-  const { setUserData, setUserPhoto } = useUserDataContext()
+  const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === ZENITH);
 
   setTemplateColors(template, root);

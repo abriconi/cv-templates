@@ -1,17 +1,14 @@
-import React from "react";
-import { CvType } from "../../../helpers/types";
 import { HeadingAurora } from "../../../shared-components/Heading";
+import { useUserDataContext } from "../../../context/UserDataContext";
 
+export const HeaderAurora = () => {
+  const { userData, userPhoto } = useUserDataContext();
 
-interface HeaderProps {
-  img: string | undefined;
-  userData: CvType;
-}
-export const HeaderAurora: React.FC<HeaderProps> = ({ img, userData }: HeaderProps) => {
   return (
-    <div className="flex flex-row w-full">
+    userData && (
+      <div className="flex flex-row w-full">
       <div className="w-1/3">
-        { img && <img src={img} alt="Uploaded user" className="object-cover aspect-square" />}
+        { userPhoto && <img src={userPhoto} alt="Uploaded user" className="object-cover aspect-square" />}
       </div>
 
       <div className="flex flex-col justify-between w-2/3 p-10" style={{ backgroundColor: "var(--primary-color)" }}>
@@ -29,5 +26,7 @@ export const HeaderAurora: React.FC<HeaderProps> = ({ img, userData }: HeaderPro
         </div>
       </div>
     </div>
+    )
+    
   );
 };

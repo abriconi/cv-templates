@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { TEMPLATES, AURORA } from "../../helpers/constants";
-import { CvType } from "../../helpers/types";
 import { EducationAurora } from "./components/EducationAurora";
 import { ExperienceAurora } from "./components/ExperienceAurora";
 import { HeaderAurora } from "./components/HeaderAurora";
@@ -8,88 +7,46 @@ import { LanguagesAurora } from "./components/LanguagesAurora";
 import { SkillsAurora } from "./components/SkillsAurora";
 import { SocialAurora } from "./components/SocialAurora";
 import { ProfileAurora } from "./components/ProfileAurora";
-
+import { useUserDataContext } from "../../context/UserDataContext";
+import { addResizeListener, receiveDataFromParent, sendColorsToParent, setTemplateColors } from "../../helpers";
 
 export const Aurora = () => {
-  const [userData, setUserData] = useState<CvType | undefined>(undefined);
-  const [userPhoto, setUserPhoto] = useState(undefined);
   const root = document.documentElement;
+  const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === AURORA);
 
-  if (template && template.colors.length > 0) {
-    root.style.setProperty("--primary-color", template.colors[0].primary);
-    root.style.setProperty("--primary-shade", template.colors[0].secondary);
-  }
+  setTemplateColors(template, root);
 
   useEffect(() => {
-    const handleResize = () => {
-      const zoomValue = (window.innerWidth / (document.getElementById("aurora-template")?.offsetWidth as number)).toFixed(4);
-      // @ts-ignore
-      document.body.style.zoom = zoomValue;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    addResizeListener(AURORA);
   }, []);
+  
+  useEffect(() => {
+    sendColorsToParent(template);
+  }, [template]);
 
   useEffect(() => {
-    if (window.top && template) {
-      // @ts-ignore
-      window.top.postMessage({
-        type: "colors-to-parent",
-        colors: template.colors,
-        templateName: template.name,
-      }, "*");
-    }
-  }, []);
-
-  useEffect(() => {
-    const receiveMessage = (event: MessageEvent) => {
-      if (event.origin !== "http://localhost:3000") return;
-
-      const receivedData = event.data;
-
-      if (receivedData.type === "custom-message-type") {
-        setUserData(receivedData.data);
-        setUserPhoto(receivedData.photo);
-      }
-      if (receivedData.type === "colors-to-iframe") {
-        root.style.setProperty("--primary-color", receivedData.color.primary);
-        root.style.setProperty("--primary-shade", receivedData.color.secondary);
-      }
-    };
-
-    window.addEventListener("message", receiveMessage);
-
-    return () => {
-      window.removeEventListener("message", () => {});
-    };
-  }, []);
+    const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
+    return cleanup;
+  }, [root, setUserData, setUserPhoto]);
 
   return (
-    <div id="aurora-template" className="flex flex-col gap-5" style={{ width: "210mm" }}>
-        {userData && (
-            <div className="flex flex-col gap-10 bg-white p-10">
-                <HeaderAurora img={userPhoto} userData={userData} />
-                <div className="flex flex-row gap-5 w-full">
-                <div className="flex flex-col gap-10 w-1/3">
-                    <SocialAurora socialLinks={userData.social} />
-                    <SkillsAurora skills={userData.skills} />
-                    <LanguagesAurora languages={userData.languages} />
-                </div>
-                <div className="w-2/3 gap-5 flex flex-col">
-                    <ProfileAurora summary={userData.summary} />
-                    <ExperienceAurora experience={userData.experience} />
-                    <EducationAurora education={userData.education} />
-                </div>
-                </div>
+    <div id={AURORA} className="flex flex-col gap-5" style={{ width: "210mm" }}>
+      <div className="flex flex-col gap-10 bg-white p-10">
+          <HeaderAurora />
+          <div className="flex flex-row gap-5 w-full">
+            <div className="flex flex-col gap-10 w-1/3">
+                <SocialAurora />
+                <SkillsAurora />
+                <LanguagesAurora />
             </div>
-        )}
+            <div className="w-2/3 gap-5 flex flex-col">
+                <ProfileAurora />
+                <ExperienceAurora />
+                <EducationAurora />
+            </div>
+          </div>
+      </div>
     </div>
   );
 };
