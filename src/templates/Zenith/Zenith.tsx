@@ -6,73 +6,31 @@ import { HeaderZenith } from "./components/HeaderZenith";
 import { LanguagesZenith } from "./components/LanguageZenith";
 import { SkillsZenith } from "./components/SkillsZenith";
 import { SocialZenith } from "./components/SocialZenith";
+import { addResizeListener, sendColorsToParent, setTemplateColors, receiveDataFromParent } from "../../helpers";
 import { useUserDataContext } from "../../context/UserDataContext";
 
-
 export const Zenith = () => {
-  const { setUserData, setUserPhoto } = useUserDataContext();
   const root = document.documentElement;
+  const { setUserData, setUserPhoto } = useUserDataContext()
   const template = TEMPLATES.find((template) => template.name === ZENITH);
 
-  if (template && template.colors.length > 0) {
-    root.style.setProperty("--primary-color", template.colors[0].primary);
-    root.style.setProperty("--primary-shade", template.colors[0].secondary);
-  }
+  setTemplateColors(template, root);
 
   useEffect(() => {
-    const handleResize = () => {
-      const zoomValue = (window.innerWidth / (document.getElementById("zenith-template")?.offsetWidth as number)).toFixed(4);
-      // @ts-ignore
-      document.body.style.zoom = zoomValue;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    addResizeListener(ZENITH);
   }, []);
+  
+  useEffect(() => {
+    sendColorsToParent(template);
+  }, [template]);
 
   useEffect(() => {
-    if (window.top && template) {
-      // @ts-ignore
-      window.top.postMessage({
-        type: "colors-to-parent",
-        colors: template.colors,
-        templateName: template.name,
-      }, "*");
-    }
-  }, []);
-
-  useEffect(() => {
-    const receiveMessage = (event: MessageEvent) => {
-      if (event.origin !== "http://localhost:3000") return;
-
-      const receivedData = event.data;
-
-      if (receivedData.type === "custom-message-type") {
-        setUserData(receivedData.data);
-        setUserPhoto(receivedData.photo);
-      }
-      if (receivedData.type === "colors-to-iframe") {
-        console.log("works");
-
-        root.style.setProperty("--primary-color", receivedData.color.primary);
-        root.style.setProperty("--primary-shade", receivedData.color.secondary);
-      }
-    };
-
-    window.addEventListener("message", receiveMessage);
-
-    return () => {
-      window.removeEventListener("message", () => {});
-    };
-  }, []);
+    const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
+    return cleanup;
+  }, [root, setUserData, setUserPhoto]);
 
   return (
-    <div id="zenith-template" className="flex flex-col gap-5" style={{ width: "210mm" }}>
+    <div id={ZENITH} className="flex flex-col gap-5" style={{ width: "210mm" }}>
       <div className="flex flex-col p-8 bg-white gap-10" style={{ color: "var(--primary-color)" }}>
         <HeaderZenith />
         <div className="flex flex-row gap-10">

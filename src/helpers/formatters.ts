@@ -20,3 +20,4 @@ export const determineSkillLevel = (skillLevel: string) =>
         : skillLevel === SKILL_LEVELS.experienced
           ? "4/5"
           : "5/5";
+
