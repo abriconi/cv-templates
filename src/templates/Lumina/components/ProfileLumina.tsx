@@ -1,14 +1,15 @@
-import React from "react";
 import { HeadingLumina } from "./HeadingLumina";
+import { useUserDataContext } from "../../../context/UserDataContext";
 
-interface Props {
-  profile: string;
-}
-export const ProfileLumina: React.FC<Props> = ({ profile }: Props) => {
+export const ProfileLumina = () => {
+  const { userData } = useUserDataContext();
+
   return (
-    <div className="flex flex-col gap-2 items-start">
-      <HeadingLumina tag="h2" title="Profile" />
-      <p className="text-sm">{profile}</p>
-    </div>
+    userData && (
+      <div className="flex flex-col gap-2 items-start">
+        <HeadingLumina tag="h2" title="Profile" />
+        <p className="text-sm">{userData.summary}</p>
+      </div>
+    )
   );
 };

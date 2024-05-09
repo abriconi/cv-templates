@@ -1,21 +1,21 @@
-import { ExperienceType } from "../../../helpers/types";
+import { useUserDataContext } from "../../../context/UserDataContext";
 import { ExperienceItem } from "../../../shared-components/ExperienceItem";
 import { HeadingLumina } from "./HeadingLumina";
 
-interface Props {
-  experience: ExperienceType[];
-}
+export const ExperienceLumina = () => {
+  const { userData } = useUserDataContext();
 
-export const ExperienceLumina: React.FC<Props> = ({ experience }: Props) => {
   return (
-    <div className="flex flex-col gap-2 items-start">
-      <HeadingLumina tag="h2" title="Experience" />
+    userData && (
+      <div className="flex flex-col gap-2 items-start">
+        <HeadingLumina tag="h2" title="Experience" />
 
-      <div className="flex flex-col gap-2">
-        {experience.map((item, index) => (
-          <ExperienceItem key={index} item={item} />
-        ))}
+        <div className="flex flex-col gap-2">
+          {userData.experience.map((item, index) => (
+            <ExperienceItem key={index} item={item} />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };

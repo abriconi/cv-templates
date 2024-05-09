@@ -1,24 +1,17 @@
-import React from "react";
 import { HeadingVertex } from "./HeadingVertex";
-import { CvType } from "../../../helpers/types";
+import { useUserDataContext } from "../../../context/UserDataContext";
 
-interface HeaderProps {
-  img: string | undefined;
-  userData: CvType | undefined;
-}
-
-
-
-export const HeaderVertex: React.FC<HeaderProps> = ({ img, userData }: HeaderProps) => {
-  return userData ? (
+export const HeaderVertex = () => {
+  const { userData, userPhoto } = useUserDataContext();
+  return (
     <div className="flex flex-row gap-5">
       <div className="rounded-md border bg-gray-50 shadow-md border-gray-300 w-16 h-16 flex items-center justify-center">
-        <img src={img} alt="Uploaded user" className="h-full w-full" />
+        <img src={userPhoto} alt="Uploaded user" className="h-full w-full" />
       </div>
       <div className="flex flex-col gap-2">
-        <HeadingVertex tag="h1" title={`${userData.firstName} ${userData.lastName}`} />
-        <HeadingVertex tag="h2" title={userData.jobPosition} />
+        {userData && <HeadingVertex tag="h1" title={`${userData.firstName} ${userData?.lastName}`} />}
+        {userData && <HeadingVertex tag="h2" title={userData.jobPosition} />}
       </div>
     </div>
-  ) : null;
+  );
 };

@@ -1,21 +1,20 @@
+import { useUserDataContext } from "../../../context/UserDataContext";
 import { HeadingLumina } from "./HeadingLumina";
 
-interface Props {
-  city: string;
-  country: string;
-  phoneNumber: string;
-  email: string;
-}
-export const DetailsLumina: React.FC<Props> = ({ city, country, phoneNumber, email }) => {
+export const DetailsLumina = () => {
+  const { userData } = useUserDataContext();
+
   return (
-    <div className="flex flex-col gap-2">
-      <HeadingLumina tag="h2" title="details" uppercase={true} />
-      <div className="flex flex-col text-sm">
-        <p>{city}</p>
-        <p>{country}</p>
-        <p>{phoneNumber}</p>
-        <p>{email}</p>
+    userData && (
+      <div className="flex flex-col gap-2">
+        <HeadingLumina tag="h2" title="details" uppercase={true} />
+        <div className="flex flex-col text-sm">
+          <p>{userData.city}</p>
+          <p>{userData.country}</p>
+          <p>{userData.phone}</p>
+          <p>{userData.email}</p>
+        </div>
       </div>
-    </div>
+    )
   );
 };

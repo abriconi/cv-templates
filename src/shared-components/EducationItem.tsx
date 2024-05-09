@@ -1,7 +1,6 @@
 import { dateFormatter } from "../helpers/formatters";
 import { EducationType } from "../helpers/types";
 
-
 interface Props {
   item: EducationType;
 }

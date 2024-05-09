@@ -1,20 +1,20 @@
-import { SkillType } from "../../../helpers/types";
+import { useUserDataContext } from "../../../context/UserDataContext";
 import { SkillItem } from "../../../shared-components/SkillItem";
 import { HeadingVertex } from "./HeadingVertex";
 
-interface Props {
-  skills: SkillType[];
-}
-export const SkillsVertex: React.FC<Props> = ({ skills }: Props) => {
+export const SkillsVertex = () => {
+  const { userData } = useUserDataContext();
   return (
-    <div className="flex flex-col items-start w-full gap-2">
-      <HeadingVertex tag="h2" title="Skills" />
+    userData && (
+      <div className="flex flex-col items-start w-full gap-2">
+        <HeadingVertex tag="h2" title="Skills" />
 
-      <div className="flex flex-col gap-1 w-full">
-        {skills.map((skill, index) => (
-          <SkillItem skill={skill} key={index} />
-        ))}
+        <div className="flex flex-col gap-1 w-full">
+          {userData.skills.map((skill, index) => (
+            <SkillItem skill={skill} key={index} />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };

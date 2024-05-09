@@ -12,12 +12,17 @@ export const LANGUAGE_LEVELS: LanguageLevels = {
 };
 
 export const SKILL_LEVELS: SkillLevels = {
-    novice: "novice",
-    beginner: "beginner",
-    skillful: "skillful",
-    experienced: "experienced",
-    expert: "expert",
-  };
+  novice: "novice",
+  beginner: "beginner",
+  skillful: "skillful",
+  experienced: "experienced",
+  expert: "expert"
+};
+
+export enum MESSAGE_TYPE {
+  userDataFromParentToIframe = "user-data-to-iframe",
+  templateUploaded = "template-uploaded",
+}
 
 export const [VERTEX, LUMINA, AURORA, ECHO, ZENITH] = ["vertex", "lumina", "aurora", "echo", "zenith"];
 export const TEMPLATES: TemplateType[] = [
@@ -27,17 +32,17 @@ export const TEMPLATES: TemplateType[] = [
     colors: [
       {
         primary: "#0000FF",
-        secondary: "#9999ff",
+        secondary: "#9999ff"
       },
       {
         primary: "#004000",
-        secondary: "#99b299",
+        secondary: "#99b299"
       },
       {
         primary: "#ff3232",
-        secondary: "#ffb2b2",
+        secondary: "#ffb2b2"
       },
-    ],
+    ]
   },
   {
     name: LUMINA,
@@ -46,10 +51,10 @@ export const TEMPLATES: TemplateType[] = [
       { primary: "#133337", secondary: "#a0adaf" },
       {
         primary: "#222F5B",
-        secondary: "#bcc0cd",
+        secondary: "#bcc0cd"
       },
       { primary: "#743818", secondary: "#d5c3b9" },
-      { primary: "#2F2F2F", secondary: "#c0c0c0" },
+      { primary: "#2F2F2F", secondary: "#c0c0c0" }
     ],
   },
   {
@@ -59,9 +64,9 @@ export const TEMPLATES: TemplateType[] = [
       { primary: "#81D2C7", secondary: "#d9f1ee" },
       {
         primary: "#b5bad0",
-        secondary: "#e8eaf0",
+        secondary: "#e8eaf0"
       },
-      { primary: "#a0b3c3", secondary: "#e2e8ed" },
+      { primary: "#a0b3c3", secondary: "#e2e8ed" }
     ],
   },
   {
@@ -70,17 +75,17 @@ export const TEMPLATES: TemplateType[] = [
     colors: [
       {
         primary: "#011f4b",
-        secondary: "#b2bbc9",
+        secondary: "#b2bbc9"
       },
       {
         primary: "#35485e",
-        secondary: "#c2c8ce",
+        secondary: "#c2c8ce"
       },
       {
         primary: "#12587b",
-        secondary: "#b7ccd7",
+        secondary: "#b7ccd7"
       },
-    ],
+    ]
   },
   {
     name: ZENITH,
@@ -88,16 +93,16 @@ export const TEMPLATES: TemplateType[] = [
     colors: [
       {
         primary: "#42496A",
-        secondary: "#ececf0",
+        secondary: "#ececf0"
       },
       {
         primary: "#5B4965",
-        secondary: "#eeecef",
+        secondary: "#eeecef"
       },
       {
         primary: "#2E293A",
-        secondary: "#eae9eb",
+        secondary: "#eae9eb"
       },
-    ],
+    ]
   },
 ];

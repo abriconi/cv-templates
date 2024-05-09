@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { EducationVertex } from "./components/EducationVertex";
 import { ExperienceVertex } from "./components/ExperienceVertex";
 import { DetailsVertex } from "./components/DetailsVertex";
@@ -7,87 +7,42 @@ import { ProfileVertex } from "./components/ProfileVertex";
 import { SocialVertex } from "./components/SocialVertex";
 import { LanguagesVertex } from "./components/LanguagesVertex";
 import { SkillsVertex } from "./components/SkillsVertex";
-import { CvType } from "../../helpers/types";
 import { TEMPLATES, VERTEX } from "../../helpers/constants";
+import { useUserDataContext } from "../../context/UserDataContext";
+import { addResizeListener, sendColorsToParent, receiveDataFromParent, notifyParentTemplateUploaded } from "../../helpers";
 
 export const Vertex = () => {
-  const [userData, setUserData] = useState<CvType | undefined>(undefined);
-  const [userPhoto, setUserPhoto] = useState(undefined);
   const root = document.documentElement;
+  const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === VERTEX);
-
-  if (template && template.colors.length > 0) {
-    root.style.setProperty("--primary-color", template.colors[0].primary);
-    root.style.setProperty("--primary-shade", template.colors[0].secondary);
-  }
+  notifyParentTemplateUploaded();
 
   useEffect(() => {
-    const handleResize = () => {
-      const zoomValue = (window.innerWidth / (document.getElementById("vertex-template")?.offsetWidth as number)).toFixed(4);  
-      // @ts-expect-error
-      document.body.style.zoom = zoomValue;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    addResizeListener(VERTEX);
   }, []);
 
   useEffect(() => {
-    if (window.top && template) {
-      window.top.postMessage({
-        type: "colors-to-parent",
-        colors: template.colors,
-        templateName: template.name,
-      }, "*");
-    }
-  }, []);
+    sendColorsToParent(template);
+  }, [template]);
 
-  useEffect(() => {
-    const receiveMessage = (event: MessageEvent) => { 
-      if (event.origin !== "http://localhost:3000") return;
-      
-      const receivedData = event.data;
-
-      if (receivedData.type === "custom-message-type") {
-        setUserData(receivedData.data);
-        setUserPhoto(receivedData.photo);
-      }
-      if (receivedData.type === "colors-to-iframe") {
-        root.style.setProperty("--primary-color", receivedData.color.primary);
-        root.style.setProperty("--primary-shade", receivedData.color.secondary);
-      }
-    };
-
-    window.addEventListener("message", receiveMessage);
-
-    return () => {
-      window.removeEventListener("message", () => {});
-    };
-  }, []);  
+  receiveDataFromParent(root, setUserData, setUserPhoto);
 
   return (
-    <div id="vertex-template" style={{ width: "210mm" }}>
-        {userData && (
-            <div className="flex flex-row p-8 bg-white gap-10">
-                <div className="flex flex-col gap-10 w-2/3">
-                    <HeaderVertex img={userPhoto} userData={userData} />
-                    <ProfileVertex profile={userData.summary} />
-                    <ExperienceVertex experience={userData.experience} />
-                    <EducationVertex education={userData.education} />
-                </div>
-                <div className="w-1/3 gap-5 flex flex-col">
-                    <DetailsVertex country={userData.country} city={userData.city} phoneNumber={userData.phone} email={userData.email} />
-                    <SocialVertex socialLinks={userData.social} />
-                    <SkillsVertex skills={userData.skills} />
-                    <LanguagesVertex languages={userData.languages} />
-                </div>
-            </div>
-        )}
+    <div id={VERTEX} style={{ width: "210mm" }}>
+      <div className="flex flex-row p-8 bg-white gap-10">
+        <div className="flex flex-col gap-10 w-2/3">
+          <HeaderVertex />
+          <ProfileVertex />
+          <ExperienceVertex />
+          <EducationVertex />
+        </div>
+        <div className="w-1/3 gap-5 flex flex-col">
+          <DetailsVertex />
+          <SocialVertex />
+          <SkillsVertex />
+          <LanguagesVertex />
+        </div>
+      </div>
     </div>
   );
 };

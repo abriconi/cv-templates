@@ -19,7 +19,7 @@ export const Zenith = () => {
   useEffect(() => {
     addResizeListener(ZENITH);
   }, []);
-  
+
   useEffect(() => {
     sendColorsToParent(template);
   }, [template]);

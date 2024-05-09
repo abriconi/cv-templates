@@ -1,22 +1,19 @@
-import React from "react";
 import { SectionHeader } from "../../../shared-components/SectionHeader/SectionHeader";
+import { useUserDataContext } from "../../../context/UserDataContext";
 
-interface Props {
-  country: string;
-  city: string;
-  phoneNumber: string;
-  email: string;
-}
-export const DetailsEcho: React.FC<Props> = ({ country, city, phoneNumber, email }: Props) => {
+export const DetailsEcho = () => {
+  const { userData } = useUserDataContext();
   return (
-    <div className="flex flex-col gap-3 items-center">
-      <SectionHeader header="Details" />
-      <div className="flex flex-col items-center">
-        <p>{city}</p>
-        <p>{country}</p>
-        <p>{phoneNumber}</p>
-        <p className="underline">{email}</p>
+    userData && (
+      <div className="flex flex-col gap-3 items-center">
+        <SectionHeader header="Details" />
+        <div className="flex flex-col items-center">
+          <p>{userData.city}</p>
+          <p>{userData.country}</p>
+          <p>{userData.phone}</p>
+          <p className="underline">{userData.email}</p>
+        </div>
       </div>
-    </div>
+    )
   );
 };

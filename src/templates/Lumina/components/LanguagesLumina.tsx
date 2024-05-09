@@ -1,19 +1,19 @@
-import { LanguagesType } from "../../../helpers/types";
+import { useUserDataContext } from "../../../context/UserDataContext";
 import { HeadingLumina } from "./HeadingLumina";
 import { LanguageItemLumina } from "./LanguageItemLumina";
 
-interface Props {
-  languages: LanguagesType[];
-}
-export const LanguageLumina: React.FC<Props> = ({ languages }: Props) => {
+export const LanguageLumina = () => {
+  const { userData } = useUserDataContext();
   return (
-    <div className="flex flex-col items-start w-full gap-2">
-      <HeadingLumina tag="h2" title="languages" uppercase={true} />
-      <div className="flex flex-col gap-2 w-full">
-        {languages.map((lang, index) => (
-          <LanguageItemLumina language={lang} key={index} />
-        ))}
+    userData && (
+      <div className="flex flex-col items-start w-full gap-2">
+        <HeadingLumina tag="h2" title="languages" uppercase={true} />
+        <div className="flex flex-col gap-2 w-full">
+          {userData.languages.map((lang, index) => (
+            <LanguageItemLumina language={lang} key={index} />
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 };

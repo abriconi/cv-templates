@@ -2,13 +2,13 @@ import React, { ReactNode } from "react";
 
 interface Props {
   tag: "h1" | "h2";
-  title: string;
+  title: string | undefined;
   children?: ReactNode;
 }
 
 export const HeadingVertex: React.FC<Props> = ({ tag, title, children }: Props) => {
   if (tag === "h1") {
-    return <h1 className="text-2xl">{title}</h1>;
+    return title && <h1 className="text-2xl">{title}</h1>;
   }
 
   if (tag === "h2" && children) {
