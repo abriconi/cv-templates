@@ -12,20 +12,13 @@ import { useUserDataContext } from "../../context/UserDataContext";
 import { addResizeListener, sendColorsToParent, receiveDataFromParent, notifyParentTemplateUploaded } from "../../helpers";
 
 export const Vertex = () => {
-  const root = document.documentElement;
   const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === VERTEX);
-  notifyParentTemplateUploaded();
 
-  useEffect(() => {
-    addResizeListener(VERTEX);
-  }, []);
-
-  useEffect(() => {
-    sendColorsToParent(template);
-  }, [template]);
-
-  receiveDataFromParent(root, setUserData, setUserPhoto);
+  useEffect(() => receiveDataFromParent(setUserData, setUserPhoto), []);
+  useEffect(() => notifyParentTemplateUploaded(), []);
+  useEffect(() => addResizeListener(VERTEX), []);
+  useEffect(() => sendColorsToParent(template), []);
 
   return (
     <div id={VERTEX} style={{ width: "210mm" }}>

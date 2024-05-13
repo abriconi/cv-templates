@@ -26,7 +26,7 @@ export const UserDataProvider: React.FC<{ children: ReactNode }> = ({ children }
     userData,
     setUserData,
     userPhoto,
-    setUserPhoto
+    setUserPhoto,
   };
 
   return <UserDataContext.Provider value={value}>{children}</UserDataContext.Provider>;

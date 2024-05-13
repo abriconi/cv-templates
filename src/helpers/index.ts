@@ -21,8 +21,9 @@ export const addResizeListener = (templateId: string) => {
   };
 };
 
-export const setTemplateColors = (template: TemplateType | undefined, root: HTMLElement) => {
+export const setTemplateColors = (template: TemplateType | undefined) => {
   if (template && template.colors.length > 0) {
+    const root = document.documentElement;
     root.style.setProperty("--primary-color", template.colors[0].primary);
     root.style.setProperty("--primary-shade", template.colors[0].secondary);
   } else {
@@ -37,7 +38,7 @@ export const sendColorsToParent = (template: TemplateType | undefined) => {
       {
         type: "colors-to-parent",
         colors: template.colors,
-        templateName: template.name
+        templateName: template.name,
       },
       "*"
     );
@@ -46,13 +47,15 @@ export const sendColorsToParent = (template: TemplateType | undefined) => {
 
 export const notifyParentTemplateUploaded = () => {
   if (window.top) {
+    console.log("notifyParentTemplateUploaded");
+
     window.top.postMessage({ type: MESSAGE_TYPE.templateUploaded }, "*");
   }
 };
 
-export const receiveDataFromParent = (root: HTMLElement, setUserData: (data: CvType) => void, setUserPhoto: (photo: string) => void) => {
+export const receiveDataFromParent = (setUserData: (data: CvType) => void, setUserPhoto: (photo: string) => void) => {
   const receiveMessage = (event: MessageEvent) => {
-    if (event.origin !== "http://localhost:3001") return;
+    if (event.origin !== "http://localhost:3000") return;
 
     const receivedData = event.data;
 
@@ -61,6 +64,7 @@ export const receiveDataFromParent = (root: HTMLElement, setUserData: (data: CvT
       setUserPhoto(receivedData.photo);
     }
     if (receivedData.type === "colors-to-iframe") {
+      const root = document.documentElement;
       root.style.setProperty("--primary-color", receivedData.color.primary);
       root.style.setProperty("--primary-shade", receivedData.color.secondary);
     }
