@@ -16,24 +16,6 @@ export interface EducationType {
   description: string;
 }
 
-export interface LanguageLevels {
-  nativeSpeaker: string;
-  beginner: string;
-  elementary: string;
-  intermediate: string;
-  upperIntermediate: string;
-  advanced: string;
-  proficiency: string;
-}
-
-export interface SkillLevels {
-  novice: string;
-  beginner: string;
-  skillful: string;
-  experienced: string;
-  expert: string;
-}
-
 export interface SkillType {
   skill: string;
   level: string;

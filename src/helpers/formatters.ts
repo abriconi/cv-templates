@@ -1,4 +1,4 @@
-import { SKILL_LEVELS } from "./constants";
+import { SKILL_LEVELS } from "./enums";
 
 export const dateFormatter = (date: string | undefined): string => {
   if (date) {

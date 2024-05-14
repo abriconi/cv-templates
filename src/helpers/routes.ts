@@ -1,4 +1,5 @@
 export enum Routes {
+  Parent = "http://localhost:3000",
   Root = "/",
   ChooseTemplatePopUp = "edit",
   Vertex = "/vertex",
