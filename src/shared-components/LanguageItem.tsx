@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { LanguagesType } from "../helpers/types";
-import { LANGUAGE_LEVELS } from "../helpers/constants";
+import { LANGUAGE_LEVELS } from "../helpers/enums";
 
 interface Props {
   language: LanguagesType;

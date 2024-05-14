@@ -8,7 +8,6 @@ import { ProfileVertex } from "./components/ProfileVertex";
 import { SocialVertex } from "./components/SocialVertex";
 import { LanguagesVertex } from "./components/LanguagesVertex";
 import { SkillsVertex } from "./components/SkillsVertex";
-import { TEMPLATES, VERTEX } from "../../helpers/constants";
 import { useUserDataContext } from "../../context/UserDataContext";
 import {
   addResizeListener,
@@ -16,7 +15,9 @@ import {
   receiveDataFromParent,
   notifyParentTemplateUploaded,
   receiveUserPhotoFromParent,
+  receiveColorFromParent,
 } from "../../helpers";
+import { TEMPLATES, VERTEX } from "../../helpers/templateData";
 
 export const Vertex = () => {
   const { setUserData, setUserPhoto } = useUserDataContext();
@@ -27,6 +28,7 @@ export const Vertex = () => {
   useEffect(() => notifyParentTemplateUploaded(), []);
   useEffect(() => addResizeListener(VERTEX), []);
   useEffect(() => sendColorsToParent(template), []);
+  useEffect(() => receiveColorFromParent());
 
   return (
     <div id={VERTEX} style={{ width: "210mm" }}>

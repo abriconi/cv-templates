@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { SKILL_LEVELS } from "../helpers/constants";
+import { SKILL_LEVELS } from "../helpers/enums";
 import { SkillType } from "../helpers/types";
 
 interface Props {
