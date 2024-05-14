@@ -22,6 +22,7 @@ export const SKILL_LEVELS: SkillLevels = {
 export enum MESSAGE_TYPE {
   userDataFromParentToIframe = "user-data-to-iframe",
   templateUploaded = "template-uploaded",
+  userPhotoToIframe = "user-photo-to-iframe",
 }
 
 export const [VERTEX, LUMINA, AURORA, ECHO, ZENITH] = ["vertex", "lumina", "aurora", "echo", "zenith"];

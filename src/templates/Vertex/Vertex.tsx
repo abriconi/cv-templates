@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import { useEffect } from "react";
 import { EducationVertex } from "./components/EducationVertex";
 import { ExperienceVertex } from "./components/ExperienceVertex";
@@ -9,13 +10,20 @@ import { LanguagesVertex } from "./components/LanguagesVertex";
 import { SkillsVertex } from "./components/SkillsVertex";
 import { TEMPLATES, VERTEX } from "../../helpers/constants";
 import { useUserDataContext } from "../../context/UserDataContext";
-import { addResizeListener, sendColorsToParent, receiveDataFromParent, notifyParentTemplateUploaded } from "../../helpers";
+import {
+  addResizeListener,
+  sendColorsToParent,
+  receiveDataFromParent,
+  notifyParentTemplateUploaded,
+  receiveUserPhotoFromParent,
+} from "../../helpers";
 
 export const Vertex = () => {
   const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === VERTEX);
 
-  useEffect(() => receiveDataFromParent(setUserData, setUserPhoto), []);
+  useEffect(() => receiveDataFromParent(setUserData), []);
+  useEffect(() => receiveUserPhotoFromParent(setUserPhoto), []);
   useEffect(() => notifyParentTemplateUploaded(), []);
   useEffect(() => addResizeListener(VERTEX), []);
   useEffect(() => sendColorsToParent(template), []);
