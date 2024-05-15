@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { TEMPLATES, ZENITH } from "../../helpers/constants";
+import { TEMPLATES, ZENITH } from "../../helpers/enums";
 import { EducationZenith } from "./components/EducationZenith";
 import { ExperienceZenith } from "./components/ExperienceZenith";
 import { HeaderZenith } from "./components/HeaderZenith";
 import { LanguagesZenith } from "./components/LanguageZenith";
 import { SkillsZenith } from "./components/SkillsZenith";
 import { SocialZenith } from "./components/SocialZenith";
-import { addResizeListener, sendColorsToParent, setTemplateColors, receiveDataFromParent } from "../../helpers";
+import { addResizeListener, sendColorsToParent, setTemplateColors } from "../../helpers";
 import { useUserDataContext } from "../../context/UserDataContext";
 
 export const Zenith = () => {
@@ -24,10 +24,10 @@ export const Zenith = () => {
     sendColorsToParent(template);
   }, [template]);
 
-  useEffect(() => {
-    const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
-    return cleanup;
-  }, [root, setUserData, setUserPhoto]);
+  // useEffect(() => {
+  //   const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
+  //   return cleanup;
+  // }, [root]);
 
   return (
     <div id={ZENITH} className="flex flex-col gap-5" style={{ width: "210mm" }}>

@@ -4,6 +4,9 @@ import { SkillItemLumina } from "./SkillItemLumina";
 
 export const SkillsLumina = () => {
   const { userData } = useUserDataContext();
+
+  if (!userData || !userData.skills || userData.skills.length === 0) return null;
+
   return (
     userData && (
       <div className="flex flex-col items-start w-full gap-2">

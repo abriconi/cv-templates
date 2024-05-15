@@ -1,10 +1,16 @@
 import { Routes } from "./routes";
 import { TemplateType } from "./types";
 
-export const [VERTEX, LUMINA, AURORA, ECHO, ZENITH] = ["vertex", "lumina", "aurora", "echo", "zenith"];
+export enum TemplateName {
+  VERTEX = "vertex",
+  LUMINA = "lumina",
+  AURORA = "aurora",
+  ECHO = "echo",
+  ZENITH = "zenith",
+}
 export const TEMPLATES: TemplateType[] = [
   {
-    name: VERTEX,
+    name: TemplateName.VERTEX,
     route: Routes.Vertex,
     colors: [
       {
@@ -22,7 +28,7 @@ export const TEMPLATES: TemplateType[] = [
     ],
   },
   {
-    name: LUMINA,
+    name: TemplateName.LUMINA,
     route: Routes.Lumina,
     colors: [
       { primary: "#133337", secondary: "#a0adaf" },
@@ -35,7 +41,7 @@ export const TEMPLATES: TemplateType[] = [
     ],
   },
   {
-    name: AURORA,
+    name: TemplateName.LUMINA,
     route: Routes.Aurora,
     colors: [
       { primary: "#81D2C7", secondary: "#d9f1ee" },
@@ -47,7 +53,7 @@ export const TEMPLATES: TemplateType[] = [
     ],
   },
   {
-    name: ECHO,
+    name: TemplateName.ECHO,
     route: Routes.Echo,
     colors: [
       {

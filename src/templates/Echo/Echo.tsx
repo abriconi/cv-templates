@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { TEMPLATES, ECHO } from "../../helpers/constants";
+import { TEMPLATES, ECHO } from "../../helpers/enums";
 import { DetailsEcho } from "./components/DetailsEcho";
 import { EducationEcho } from "./components/EducationEcho";
 import { ExperienceEcho } from "./components/ExperienceEcho";
@@ -26,10 +26,10 @@ export const Echo = () => {
     sendColorsToParent(template);
   }, [template]);
 
-  useEffect(() => {
-    const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
-    return cleanup;
-  }, [root, setUserData, setUserPhoto]);
+  // useEffect(() => {
+  //   const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
+  //   return cleanup;
+  // }, [root, setUserData, setUserPhoto]);
 
   return (
     <div id={ECHO} className="flex flex-col gap-5" style={{ width: "210mm" }}>

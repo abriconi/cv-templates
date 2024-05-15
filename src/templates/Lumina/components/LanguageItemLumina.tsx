@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { LANGUAGE_LEVELS } from "../../../helpers/constants";
+import { LANGUAGE_LEVELS } from "../../../helpers/enums";
 import { LanguagesType } from "../../../helpers/types";
 
 
