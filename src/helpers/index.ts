@@ -85,6 +85,8 @@ export const receiveColorFromParent = () => {
 
     if (receivedData.type === MESSAGE_TYPE.chosenColorToIframe) {
       const root = document.documentElement;
+      console.log(receivedData.color.primary);
+
       root.style.setProperty("--primary-color", receivedData.color.primary);
       root.style.setProperty("--primary-shade", receivedData.color.secondary);
     }
