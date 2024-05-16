@@ -6,14 +6,14 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const ProfileVertex = () => {
   const { userData } = useUserDataContext();
 
+  if (!userData || !userData.summary) return null;
+
   return (
-    userData && (
-      <div className="flex flex-col gap-2 items-start">
-        <HeadingVertex tag="h2" title="Profile">
-          <FontAwesomeIcon icon={faUser} className="text-blue-600" style={{ color: "var(--primary-color)" }} />
-        </HeadingVertex>
-        {userData && <p className="text-sm">{userData.summary}</p>}
-      </div>
-    )
+    <div className="flex flex-col gap-2 items-start">
+      <HeadingVertex tag="h2" title="Profile">
+        <FontAwesomeIcon icon={faUser} className="text-blue-600" style={{ color: "var(--primary-color)" }} />
+      </HeadingVertex>
+      <p className="text-sm">{userData.summary}</p>
+    </div>
   );
 };

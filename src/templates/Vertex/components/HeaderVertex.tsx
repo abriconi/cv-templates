@@ -4,6 +4,8 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const HeaderVertex = () => {
   const { userData, userPhoto } = useUserDataContext();
 
+  if (!userData) return null;
+
   return (
     <div className="flex flex-row gap-5">
       <div className="rounded-md border bg-gray-50 shadow-md border-gray-300 w-16 h-16 flex items-center justify-center">
