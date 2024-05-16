@@ -41,7 +41,7 @@ export const TEMPLATES: TemplateType[] = [
     ],
   },
   {
-    name: TemplateName.LUMINA,
+    name: TemplateName.AURORA,
     route: Routes.Aurora,
     colors: [
       { primary: "#81D2C7", secondary: "#d9f1ee" },
@@ -67,6 +67,24 @@ export const TEMPLATES: TemplateType[] = [
       {
         primary: "#12587b",
         secondary: "#b7ccd7",
+      },
+    ],
+  },
+  {
+    name: TemplateName.ZENITH,
+    route: Routes.Zenith,
+    colors: [
+      {
+        primary: "#42496A",
+        secondary: "#ececf0",
+      },
+      {
+        primary: "#5B4965",
+        secondary: "#eeecef",
+      },
+      {
+        primary: "#2E293A",
+        secondary: "#eae9eb",
       },
     ],
   },

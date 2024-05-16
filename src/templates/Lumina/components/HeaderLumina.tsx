@@ -4,6 +4,8 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const HeaderLumina = () => {
   const { userData, userPhoto } = useUserDataContext();
 
+  if (!userData) return null;
+
   return (
     userData && (
       <div className="flex flex-col gap-5 items-center">

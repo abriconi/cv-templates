@@ -8,7 +8,7 @@ import { UserDataProvider } from "./context/UserDataContext.tsx";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <UserDataProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </UserDataProvider>
   </React.StrictMode>,
 );
