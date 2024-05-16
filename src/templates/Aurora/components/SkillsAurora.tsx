@@ -5,16 +5,16 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const SkillsAurora = () => {
   const { userData } = useUserDataContext();
 
+  if (!userData || !userData.skills || userData.skills.length === 0) return null;
+
   return (
-    userData && (
-      <div className="flex flex-col gap-2 items-start w-full">
-        <HeadingAurora title="Skills" tag="h2" />
-        <div className="flex flex-col gap-2 w-full">
-          {userData.skills.map((skill, index) => (
-            <SkillItem skill={skill} key={index} />
-          ))}
-        </div>
+    <div className="flex flex-col gap-2 items-start w-full">
+      <HeadingAurora title="Skills" tag="h2" />
+      <div className="flex flex-col gap-2 w-full">
+        {userData.skills.map((skill, index) => (
+          <SkillItem skill={skill} key={index} />
+        ))}
       </div>
-    )
+    </div>
   );
 };
