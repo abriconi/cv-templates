@@ -3,17 +3,17 @@ import { HeadingZenith } from "./HeadingZenith";
 import { WrapperShade } from "./WrapperShade";
 
 export const SocialZenith = () => {
-const { userData } = useUserDataContext();
+  const { userData } = useUserDataContext();
+
+  if (!userData || !userData.social || userData.social.length === 0) return null;
   return (
-    userData && (
-      <WrapperShade>
-        <HeadingZenith tag="h2" title="Social" />
-        {userData.social.map((item, index) => (
-          <a href={item.link} className="text-sm underline" key={index}>
-            {item.label}
-          </a>
-        ))}
-      </WrapperShade>
-    )
+    <WrapperShade>
+      <HeadingZenith tag="h2" title="Social" />
+      {userData.social.map((item, index) => (
+        <a href={item.link} className="text-sm underline" key={index}>
+          {item.label}
+        </a>
+      ))}
+    </WrapperShade>
   );
 };

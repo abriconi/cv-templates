@@ -2,12 +2,14 @@ import React from "react";
 
 interface Props {
   tag: "h1" | "h2" | "h3";
-  title: string;
+  title: string | undefined;
 }
 
 const [h1, h2, h3] = ["h1", "h2", "h3"];
 
 export const HeadingZenith: React.FC<Props> = ({ tag, title }: Props) => {
+  if (!title) return null;
+
   return (
     <>
       {tag === h1 && <h1 className="text-7xl font-semibold">{title}</h1>}

@@ -1,36 +1,17 @@
-import { useEffect } from "react";
-import { TEMPLATES, ZENITH } from "../../helpers/enums";
 import { EducationZenith } from "./components/EducationZenith";
 import { ExperienceZenith } from "./components/ExperienceZenith";
 import { HeaderZenith } from "./components/HeaderZenith";
 import { LanguagesZenith } from "./components/LanguageZenith";
 import { SkillsZenith } from "./components/SkillsZenith";
 import { SocialZenith } from "./components/SocialZenith";
-import { addResizeListener, sendColorsToParent, setTemplateColors } from "../../helpers";
-import { useUserDataContext } from "../../context/UserDataContext";
+import { TemplateName } from "../../helpers/templateData";
+import { useTemplateEffects } from "../../helpers/hooks/useTemplateEffect";
 
 export const Zenith = () => {
-  const root = document.documentElement;
-  const { setUserData, setUserPhoto } = useUserDataContext();
-  const template = TEMPLATES.find((template) => template.name === ZENITH);
-
-  setTemplateColors(template, root);
-
-  useEffect(() => {
-    addResizeListener(ZENITH);
-  }, []);
-
-  useEffect(() => {
-    sendColorsToParent(template);
-  }, [template]);
-
-  // useEffect(() => {
-  //   const cleanup = receiveDataFromParent(root, setUserData, setUserPhoto);
-  //   return cleanup;
-  // }, [root]);
+  useTemplateEffects(TemplateName.ZENITH);
 
   return (
-    <div id={ZENITH} className="flex flex-col gap-5" style={{ width: "210mm" }}>
+    <div id={TemplateName.ZENITH} style={{ width: "210mm" }}>
       <div className="flex flex-col p-8 bg-white gap-10" style={{ color: "var(--primary-color)" }}>
         <HeaderZenith />
         <div className="flex flex-row gap-10">

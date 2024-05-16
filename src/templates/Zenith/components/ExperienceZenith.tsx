@@ -5,13 +5,14 @@ import { HeadingZenith } from "./HeadingZenith";
 export const ExperienceZenith = () => {
   const { userData } = useUserDataContext();
 
+  if (!userData || !userData.experience || userData.experience.length === 0) return null;
+
   return (
-    userData && (
-      <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2">
       <HeadingZenith tag="h2" title="Experience" />
       {userData.experience.map((item, index) => (
         <ExperienceItemZenith item={item} key={index} />
       ))}
-    </div> )     
-    );
+    </div>
+  );
 };

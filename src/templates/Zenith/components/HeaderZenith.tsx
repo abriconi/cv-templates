@@ -1,18 +1,19 @@
 import clsx from "clsx";
 import styles from "../zenith.module.css";
 import { HeadingZenith } from "./HeadingZenith";
-import { WrapperShade } from "./WrapperShade";
 import { useUserDataContext } from "../../../context/UserDataContext";
+import { UserPhotoZenith } from "./UserPhotoZenith";
+import { ProfileZenith } from "./ProfileZenith";
 
 export const HeaderZenith = () => {
-  const { userData, userPhoto } = useUserDataContext();
+  const { userData } = useUserDataContext();
 
   return (
     userData && (
       <div className="flex flex-col gap-5">
         <div className="flex flex-row items-center">
           <div className="w-1/3">
-            <img src={userPhoto} alt="Uploaded user" className="w-[150px] object-cover aspect-square rounded-md" />
+            <UserPhotoZenith />
           </div>
           <div className="w-2/3">
             <HeadingZenith tag="h1" title={`${userData.firstName} ${userData.lastName}`} />
@@ -27,10 +28,7 @@ export const HeaderZenith = () => {
               {userData.city}, {userData.country}
             </p>
           </div>
-          <WrapperShade>
-            <HeadingZenith tag="h2" title="Profile" />
-            <p className="text-sm">{userData.summary}</p>
-          </WrapperShade>
+          <ProfileZenith />
         </div>
         <div className={clsx(styles.border)}></div>
       </div>
