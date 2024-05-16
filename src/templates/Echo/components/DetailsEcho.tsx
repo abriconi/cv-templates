@@ -3,6 +3,9 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 
 export const DetailsEcho = () => {
   const { userData } = useUserDataContext();
+
+  if (!userData) return null;
+
   return (
     userData && (
       <div className="flex flex-col gap-3 items-center">

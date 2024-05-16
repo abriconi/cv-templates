@@ -8,21 +8,21 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const EducationEcho = () => {
   const { userData } = useUserDataContext();
 
+  if (!userData || !userData.education || userData.education.length === 0) return null;
+
   return (
-    userData && (
-      <div className="flex flex-col gap-4">
-        <div className="flex flex-row gap-4 items-center -ml-1.5">
-          <FontAwesomeIcon icon={faGraduationCap} style={{ color: "var(--primary-color)" }} />
-          <HeadingEcho tag="h2" title="Education" />
-        </div>
-        <>
-          {userData.education.map((item, index) => (
-            <VerticalDivider key={index}>
-              <EducationItem item={item} key={index} />
-            </VerticalDivider>
-          ))}
-        </>
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-row gap-4 items-center -ml-1.5">
+        <FontAwesomeIcon icon={faGraduationCap} style={{ color: "var(--primary-color)" }} />
+        <HeadingEcho tag="h2" title="Education" />
       </div>
-    )
+      <>
+        {userData.education.map((item, index) => (
+          <VerticalDivider key={index}>
+            <EducationItem item={item} key={index} />
+          </VerticalDivider>
+        ))}
+      </>
+    </div>
   );
 };

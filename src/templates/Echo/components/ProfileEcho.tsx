@@ -6,6 +6,9 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 
 export const ProfileEcho = () => {
   const { userData } = useUserDataContext();
+
+  if (!userData || !userData.summary) return null;
+
   return (
     userData && (
       <div className="flex flex-col gap-3">

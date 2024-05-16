@@ -4,18 +4,18 @@ import { SectionHeader } from "../../../shared-components/SectionHeader/SectionH
 export const SocialEcho = () => {
   const { userData } = useUserDataContext();
 
+  if (!userData || !userData.social || userData.social.length === 0) return null;
+
   return (
-    userData && (
-      <div className="flex flex-col gap-3 items-center">
-        <SectionHeader header="Social" />
-        <div className="flex flex-col items-center">
-          {userData.social.map((link, index) => (
-            <a className="underline" href={link.link} key={index}>
-              {link.label}
-            </a>
-          ))}
-        </div>
+    <div className="flex flex-col gap-3 items-center">
+      <SectionHeader header="Social" />
+      <div className="flex flex-col items-center">
+        {userData.social.map((link, index) => (
+          <a className="underline" href={link.link} key={index}>
+            {link.label}
+          </a>
+        ))}
       </div>
-    )
+    </div>
   );
 };
