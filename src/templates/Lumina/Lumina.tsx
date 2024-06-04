@@ -15,7 +15,7 @@ export const Lumina = () => {
   return (
     <div id={TemplateName.LUMINA} style={{ width: "210mm" }}>
       <div className="flex flex-row">
-        <div className="flex flex-col gap-10 w-1/3 text-white p-8" style={{ backgroundColor: "var(--primary-color)" }}>
+        <div className="flex flex-col gap-10 w-1/3 text-white p-8" style={{ boxShadow: "inset 0 0 0 1000px var(--primary-color)" }}>
           <HeaderLumina />
           <DetailsLumina />
           <SocialLumina />
