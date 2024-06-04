@@ -11,9 +11,9 @@ export const LanguageItem: React.FC<Props> = ({ language, aligning = "self-auto"
   return (
     <div className="flex flex-col">
       <p className={clsx(aligning, "text-sm")}>{language.language}</p>
-      <div className="w-full h-1 relative rounded" style={{ backgroundColor: "var(--primary-shade)" }}>
+      <div className="w-full h-1 relative rounded" style={{ boxShadow: "inset 0.25rem 0.25rem var(--primary-shade)" }}>
         <span
-          style={{ backgroundColor: "var(--primary-color)" }}
+          style={{ boxShadow: "inset 0.25rem 0.25rem var(--primary-color)" }}
           className={clsx("absolute h-1 rounded", {
             "w-1/6": language.level === LANGUAGE_LEVELS.beginner,
             "w-1/3": language.level === LANGUAGE_LEVELS.elementary,

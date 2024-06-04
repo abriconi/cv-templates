@@ -10,9 +10,9 @@ export const SkillItem: React.FC<Props> = ({ skill, aligning = "self-auto" }: Pr
   return (
     <div className="flex flex-col">
       <p className={clsx(aligning, "text-sm")}>{skill.skill}</p>
-      <div style={{ backgroundColor: "var(--primary-shade)" }} className="w-full h-1 relative rounded">
+      <div className="w-full h-1 relative rounded" style={{ boxShadow: "inset 0.25rem 0.25rem var(--primary-shade)" }}>
         <span
-          style={{ backgroundColor: "var(--primary-color)" }}
+          style={{ boxShadow: "inset 0.25rem 0.25rem var(--primary-color)" }}
           className={clsx("absolute h-1 rounded", {
             "w-1/6": skill.level === SKILL_LEVELS.novice,
             "w-2/6": skill.level === SKILL_LEVELS.beginner,
