@@ -14,7 +14,7 @@ export const HeaderAurora = () => {
           <UserPhotoAurora />
         </div>
 
-        <div className="w-2/3 flex flex-col justify-between p-10" style={{ backgroundColor: "var(--primary-color)" }}>
+        <div className="w-2/3 flex flex-col justify-between p-10" style={{ boxShadow: "inset 0 0 0 1000px var(--primary-color)" }}>
           <div className="flex flex-col gap-2">
             <HeadingAurora tag="h1" title={`${userData.firstName} ${userData.lastName}`} />
             <HeadingAurora tag="h2" title={`${userData.jobPosition}`} />

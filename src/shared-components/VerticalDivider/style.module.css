@@ -19,7 +19,10 @@
     content: "";
     position: absolute;
     width: 1px;
-    background-color:var(--primary-color);
+    box-sizing:content-box;
+    border-left: 1px;
+    border-style: solid;
+    border-color: var(--primary-color);
     top: 20px;
     bottom: -31px;
     left: 0px;
