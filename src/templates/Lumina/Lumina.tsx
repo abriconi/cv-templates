@@ -8,12 +8,14 @@ import { SocialLumina } from "./components/SocialLumina";
 import { ProfileLumina } from "./components/ProfileLumina";
 import { TemplateName } from "../../helpers/templateData";
 import { useTemplateEffects } from "../../helpers/hooks/useTemplateEffect";
+import clsx from "clsx";
+import styles from "../../main-styles.module.css";
 
 export const Lumina = () => {
   useTemplateEffects(TemplateName.LUMINA);
 
   return (
-    <div id={TemplateName.LUMINA} style={{ width: "210mm" }}>
+    <div id={TemplateName.LUMINA} className={clsx(styles.windowWidth)}>
       <div className="flex flex-row">
         <div className="flex flex-col gap-10 w-1/3 text-white p-8" style={{ boxShadow: "inset 0 0 0 1000px var(--primary-color)" }}>
           <HeaderLumina />

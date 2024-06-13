@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { SKILL_LEVELS } from "../../../helpers/enums";
 import { SkillType } from "../../../helpers/types";
+import { RangeLumina } from "./RangeLumina";
 
 interface Props {
   skill: SkillType;
@@ -9,7 +10,7 @@ export const SkillItemLumina: React.FC<Props> = ({ skill }: Props) => {
   return (
     <div className="flex flex-col">
       <p className="text-sm">{skill.skill}</p>
-      <div style={{ boxShadow: "inset 0 0 10px var(--primary-shade)" }} className="w-full h-1 relative">
+      <RangeLumina>
         <span
           style={{ boxShadow: "inset 0 0 10px white" }}
           className={clsx("absolute h-1 rounded bg-white", {
@@ -19,7 +20,7 @@ export const SkillItemLumina: React.FC<Props> = ({ skill }: Props) => {
             "w-4/5": skill.level === SKILL_LEVELS.experienced,
             "w-full": skill.level === SKILL_LEVELS.expert,
           })}></span>
-      </div>
+      </RangeLumina>
     </div>
   );
 };

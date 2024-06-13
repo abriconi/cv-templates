@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { LANGUAGE_LEVELS } from "../../../helpers/enums";
 import { LanguagesType } from "../../../helpers/types";
-
+import { RangeLumina } from "./RangeLumina";
 
 interface Props {
   language: LanguagesType;
@@ -11,7 +11,7 @@ export const LanguageItemLumina: React.FC<Props> = ({ language }: Props) => {
   return (
     <div className="flex flex-col">
       <p className="text-sm">{language.language}</p>
-      <div className="w-full h-1 relative rounded" style={{ backgroundColor: "var(--primary-shade)" }}>
+      <RangeLumina>
         <span
           className={clsx("absolute h-1 rounded bg-white", {
             "w-1/6": language.level === LANGUAGE_LEVELS.beginner,
@@ -21,7 +21,7 @@ export const LanguageItemLumina: React.FC<Props> = ({ language }: Props) => {
             "w-5/6": language.level === LANGUAGE_LEVELS.advanced,
             "w-full": language.level === LANGUAGE_LEVELS.nativeSpeaker || language.level === LANGUAGE_LEVELS.proficiency,
           })}></span>
-      </div>
+      </RangeLumina>
     </div>
   );
 };

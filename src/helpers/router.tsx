@@ -15,44 +15,44 @@ export const router = createBrowserRouter([
     path: Routes.Root,
     element: <App />,
   },
-    {
-      path: Routes.Vertex,
-      element: (
-        <Suspense fallback={<Loader />}>
-          <Vertex />
-        </Suspense>
-      ),
-    },
-    {
-      path: Routes.Lumina,
-      element: (
-        <Suspense fallback={<Loader />}>
-          <Lumina />
-        </Suspense>
-      ),
-    },
-    {
-      path: Routes.Aurora,
-      element: (
-        <Suspense fallback={<Loader />}>
-          <Aurora />
-        </Suspense>
-      ),
-    },
-    {
-      path: Routes.Echo,
-      element: (
-        <Suspense fallback={<Loader />}>
-          <Echo />
-        </Suspense>
-      ),
-    },
-    {
-      path: Routes.Zenith,
-      element: (
-        <Suspense fallback={<Loader />}>
-          <Zenith />
-        </Suspense>
-      ),
-    },
+  {
+    path: Routes.Vertex,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Vertex />
+      </Suspense>
+    ),
+  },
+  {
+    path: Routes.Lumina,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Lumina />
+      </Suspense>
+    ),
+  },
+  {
+    path: Routes.Aurora,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Aurora />
+      </Suspense>
+    ),
+  },
+  {
+    path: Routes.Echo,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Echo />
+      </Suspense>
+    ),
+  },
+  {
+    path: Routes.Zenith,
+    element: (
+      <Suspense fallback={<Loader />}>
+        <Zenith />
+      </Suspense>
+    ),
+  },
 ]);

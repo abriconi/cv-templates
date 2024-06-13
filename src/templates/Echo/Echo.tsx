@@ -8,12 +8,14 @@ import { SkillsEcho } from "./components/SkillsEcho";
 import { SocialEcho } from "./components/SocialEcho";
 import { TemplateName } from "../../helpers/templateData";
 import { useTemplateEffects } from "../../helpers/hooks/useTemplateEffect";
+import styles from "../../main-styles.module.css";
+import clsx from "clsx";
 
 export const Echo = () => {
   useTemplateEffects(TemplateName.ECHO);
 
   return (
-    <div id={TemplateName.ECHO} className="flex flex-col gap-5" style={{ width: "210mm" }}>
+    <div id={TemplateName.ECHO} className={clsx(styles.windowWidth, "flex flex-col gap-5")}>
       <div className="flex flex-col p-8 bg-white gap-10">
         <HeaderEcho />
         <div className="flex flex-row gap-5 w-full">

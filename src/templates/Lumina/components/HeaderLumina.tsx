@@ -13,7 +13,6 @@ export const HeaderLumina = () => {
           <img src={userPhoto} alt="Uploaded user" className="h-full w-full rounded-full" />
         </div>
         <HeadingLumina tag="h1" title={`${userData.firstName} ${userData.lastName}`} />
-        <p className="w-10 h-0.5 rounded" style={{ backgroundColor: "var(--primary-shade)" }} />
         <p className="uppercase text-sm">{userData.jobPosition}</p>
       </div>
     )

@@ -15,6 +15,7 @@ export const useTemplateEffects = (templateName: string) => {
   useEffect(() => addResizeListener(template?.name), []);
   useEffect(() => sendColorsToParent(template), []);
   useEffect(() => receiveColorFromParent());
+  useEffect(() => receivePrintFromParent());
 
   const handleResize = (templateId: string) => {
     const zoomValue = (window.innerWidth / (document.getElementById(templateId)?.offsetWidth as number)).toFixed(4);
@@ -90,6 +91,24 @@ export const useTemplateEffects = (templateName: string) => {
 
     return () => {
       window.removeEventListener("message", receiveMessagePhoto);
+    };
+  };
+
+  const receivePrintFromParent = () => {
+    const receiveMessagePrint = (event: MessageEvent) => {
+      if (event.origin !== Routes.Parent) return;
+
+      const receivedData = event.data;
+
+      if (receivedData.type === "print") {
+        window.print();
+      }
+    };
+
+    window.addEventListener("message", receiveMessagePrint);
+
+    return () => {
+      window.removeEventListener("message", receiveMessagePrint);
     };
   };
 

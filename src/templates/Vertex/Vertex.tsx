@@ -8,12 +8,14 @@ import { LanguagesVertex } from "./components/LanguagesVertex";
 import { SkillsVertex } from "./components/SkillsVertex";
 import { TemplateName } from "../../helpers/templateData";
 import { useTemplateEffects } from "../../helpers/hooks/useTemplateEffect";
+import styles from "../../main-styles.module.css";
+import clsx from "clsx";
 
 export const Vertex = () => {
   useTemplateEffects(TemplateName.VERTEX);
 
   return (
-    <div id={TemplateName.VERTEX} style={{ width: "210mm" }}>
+    <div id={TemplateName.VERTEX} className={clsx(styles.windowWidth)}>
       <div className="flex flex-row p-8 bg-white gap-10">
         <div className="flex flex-col gap-10 w-2/3">
           <HeaderVertex />

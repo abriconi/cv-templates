@@ -6,12 +6,14 @@ import { SkillsZenith } from "./components/SkillsZenith";
 import { SocialZenith } from "./components/SocialZenith";
 import { TemplateName } from "../../helpers/templateData";
 import { useTemplateEffects } from "../../helpers/hooks/useTemplateEffect";
+import styles from "../../main-styles.module.css";
+import clsx from "clsx";
 
 export const Zenith = () => {
   useTemplateEffects(TemplateName.ZENITH);
 
   return (
-    <div id={TemplateName.ZENITH} style={{ width: "210mm" }}>
+    <div id={TemplateName.ZENITH} className={clsx(styles.windowWidth)}>
       <div className="flex flex-col p-8 bg-white gap-10" style={{ color: "var(--primary-color)" }}>
         <HeaderZenith />
         <div className="flex flex-row gap-10">

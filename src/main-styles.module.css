@@ -1,0 +1,10 @@
+@media print {
+    @page {
+        margin: 0;
+    }
+
+}
+
+.windowWidth {
+    width: 210mm;
+}
