@@ -7,7 +7,7 @@ interface Props {
   item: EducationType;
 }
 
-export const EducationItemZenith: React.FC<Props> = ({ item }: Props) => {
+export const EducationItemZenith: React.FC<Props> = ({ item }) => {
   const startDate = dateFormatter(item.startDate);
   const endDate = dateFormatter(item.endDate);
   return (

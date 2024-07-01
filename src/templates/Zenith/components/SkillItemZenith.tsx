@@ -10,7 +10,7 @@ interface Props {
   skill: SkillType;
 }
 
-export const SkillItemZenith: React.FC<Props> = ({ skill }: Props) => {
+export const SkillItemZenith: React.FC<Props> = ({ skill }) => {
   const levelMark = useMemo(() => determineSkillLevel(skill.level), [skill.level]);
   return (
     <div className="flex flex-row">

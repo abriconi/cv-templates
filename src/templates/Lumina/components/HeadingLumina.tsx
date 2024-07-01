@@ -4,7 +4,7 @@ interface Props {
     uppercase?: boolean;
   }
   
-  export const HeadingLumina: React.FC<Props> = ({ tag, title, uppercase = false }: Props) => {
+  export const HeadingLumina: React.FC<Props> = ({ tag, title, uppercase = false }) => {
     return (
       <>
         {tag === "h1" && <h1 className="text-2xl">{title}</h1>}

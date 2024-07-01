@@ -6,7 +6,7 @@ import { WrapperHeading } from "./WrapperHeading";
 interface Props {
   item: ExperienceType;
 }
-export const ExperienceItemZenith: React.FC<Props> = ({ item }: Props) => {
+export const ExperienceItemZenith: React.FC<Props> = ({ item }) => {
   const startDate = dateFormatter(item.startDate);
   const endDate = dateFormatter(item.endDate);
   return (

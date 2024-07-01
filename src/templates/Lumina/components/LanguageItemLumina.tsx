@@ -7,7 +7,7 @@ interface Props {
   language: LanguagesType;
 }
 
-export const LanguageItemLumina: React.FC<Props> = ({ language }: Props) => {
+export const LanguageItemLumina: React.FC<Props> = ({ language }) => {
   return (
     <div className="flex flex-col">
       <p className="text-sm">{language.language}</p>

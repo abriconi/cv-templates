@@ -4,7 +4,7 @@ interface Props {
   tag: "h1" | "h2";
   title: string;
 }
-export const HeadingAurora: React.FC<Props> = ({ title, tag }: Props) => {
+export const HeadingAurora: React.FC<Props> = ({ title, tag }) => {
   return (
     <>
       {tag === "h1" && <h1 className="text-3xl font-semibold">{title}</h1>}

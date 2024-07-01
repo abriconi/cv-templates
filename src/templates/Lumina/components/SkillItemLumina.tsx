@@ -6,7 +6,7 @@ import { RangeLumina } from "./RangeLumina";
 interface Props {
   skill: SkillType;
 }
-export const SkillItemLumina: React.FC<Props> = ({ skill }: Props) => {
+export const SkillItemLumina: React.FC<Props> = ({ skill }) => {
   return (
     <div className="flex flex-col">
       <p className="text-sm">{skill.skill}</p>

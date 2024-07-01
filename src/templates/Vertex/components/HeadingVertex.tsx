@@ -6,7 +6,7 @@ interface Props {
   children?: ReactNode;
 }
 
-export const HeadingVertex: React.FC<Props> = ({ tag, title, children }: Props) => {
+export const HeadingVertex: React.FC<Props> = ({ tag, title, children }) => {
   if (tag === "h1") {
     return title && <h1 className="text-2xl">{title}</h1>;
   }

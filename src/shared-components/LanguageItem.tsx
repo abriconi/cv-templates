@@ -7,7 +7,7 @@ interface Props {
   aligning?: "self-center" | "self-auto";
 }
 
-export const LanguageItem: React.FC<Props> = ({ language, aligning = "self-auto" }: Props) => {
+export const LanguageItem: React.FC<Props> = ({ language, aligning = "self-auto" }) => {
   return (
     <div className="flex flex-col">
       <p className={clsx(aligning, "text-sm")}>{language.language}</p>

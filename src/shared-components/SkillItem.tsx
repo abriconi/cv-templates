@@ -6,7 +6,7 @@ interface Props {
   skill: SkillType;
   aligning?: "self-center" | "self-auto";
 }
-export const SkillItem: React.FC<Props> = ({ skill, aligning = "self-auto" }: Props) => {
+export const SkillItem: React.FC<Props> = ({ skill, aligning = "self-auto" }) => {
   return (
     <div className="flex flex-col">
       <p className={clsx(aligning, "text-sm")}>{skill.skill}</p>

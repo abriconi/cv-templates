@@ -7,7 +7,7 @@ interface Props {
 
 const [h1, h2, h3] = ["h1", "h2", "h3"];
 
-export const HeadingZenith: React.FC<Props> = ({ tag, title }: Props) => {
+export const HeadingZenith: React.FC<Props> = ({ tag, title }) => {
   if (!title) return null;
 
   return (
