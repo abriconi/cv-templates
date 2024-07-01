@@ -1,8 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Routes } from "./routes";
 import App from "../App";
-import { Suspense, lazy } from "react";
-import Loader from "../shared-components/Loader";
+import { lazy } from "react";
 
 const Lumina = lazy(() => import("../templates/Lumina/Lumina").then((module) => ({ default: module.Lumina })));
 const Vertex = lazy(() => import("../templates/Vertex/Vertex").then((module) => ({ default: module.Vertex })));
@@ -14,45 +13,27 @@ export const router = createBrowserRouter([
   {
     path: Routes.Root,
     element: <App />,
-  },
-  {
-    path: Routes.Vertex,
-    element: (
-      <Suspense fallback={<Loader />}>
-        <Vertex />
-      </Suspense>
-    ),
-  },
-  {
-    path: Routes.Lumina,
-    element: (
-      <Suspense fallback={<Loader />}>
-        <Lumina />
-      </Suspense>
-    ),
-  },
-  {
-    path: Routes.Aurora,
-    element: (
-      <Suspense fallback={<Loader />}>
-        <Aurora />
-      </Suspense>
-    ),
-  },
-  {
-    path: Routes.Echo,
-    element: (
-      <Suspense fallback={<Loader />}>
-        <Echo />
-      </Suspense>
-    ),
-  },
-  {
-    path: Routes.Zenith,
-    element: (
-      <Suspense fallback={<Loader />}>
-        <Zenith />
-      </Suspense>
-    ),
+    children: [
+      {
+        path: Routes.Vertex,
+        element: <Vertex />,
+      },
+      {
+        path: Routes.Lumina,
+        element: <Lumina />,
+      },
+      {
+        path: Routes.Aurora,
+        element: <Aurora />,
+      },
+      {
+        path: Routes.Echo,
+        element: <Echo />,
+      },
+      {
+        path: Routes.Zenith,
+        element: <Zenith />,
+      },
+    ],
   },
 ]);
