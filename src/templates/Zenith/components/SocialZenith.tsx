@@ -5,7 +5,7 @@ import { WrapperShade } from "./WrapperShade";
 export const SocialZenith = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.social || userData.social.length === 0) return null;
+  if (!userData?.social?.length) return null;
   return (
     <WrapperShade>
       <HeadingZenith tag="h2" title="Social" />

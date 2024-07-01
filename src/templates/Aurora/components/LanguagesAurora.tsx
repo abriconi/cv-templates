@@ -5,7 +5,7 @@ import { LanguageItem } from "../../../shared-components/LanguageItem";
 export const LanguagesAurora = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.languages || userData.languages.length === 0) return null;
+  if (!userData?.languages?.length) return null;
 
   return (
     <div className="flex flex-col items-start w-full gap-2">

@@ -4,6 +4,7 @@ import { HeadingZenith } from "./HeadingZenith";
 import { useUserDataContext } from "../../../context/UserDataContext";
 import { UserPhotoZenith } from "./UserPhotoZenith";
 import { ProfileZenith } from "./ProfileZenith";
+import { DetailItemZenith } from "./DetailItemZenith";
 
 export const HeaderZenith = () => {
   const { userData } = useUserDataContext();
@@ -20,13 +21,11 @@ export const HeaderZenith = () => {
           </div>
         </div>
         <div className="flex flex-row">
-          <div className="flex flex-col w-1/3">
+          <div className="flex flex-col w-1/3 gap-1">
             <HeadingZenith tag="h3" title={userData.jobPosition} />
-            <p className="text-sm">{userData.email}</p>
-            <p className="text-sm pb-2">{userData.phone}</p>
-            <p className="text-sm">
-              {userData.city}, {userData.country}
-            </p>
+            <DetailItemZenith firstLabel={userData.email}/>
+            <DetailItemZenith firstLabel={userData.phone}/>
+            <DetailItemZenith firstLabel={userData.city} secondLabel={userData.country} />
           </div>
           <ProfileZenith />
         </div>

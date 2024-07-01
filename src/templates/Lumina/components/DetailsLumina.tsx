@@ -1,4 +1,5 @@
 import { useUserDataContext } from "../../../context/UserDataContext";
+import { DetailItem } from "../../../shared-components/DetailItem";
 import { HeadingLumina } from "./HeadingLumina";
 
 export const DetailsLumina = () => {
@@ -10,10 +11,10 @@ export const DetailsLumina = () => {
     <div className="flex flex-col gap-2">
       <HeadingLumina tag="h2" title="details" uppercase={true} />
       <div className="flex flex-col text-sm">
-        <p>{userData.city}</p>
-        <p>{userData.country}</p>
-        <p>{userData.phone}</p>
-        <p>{userData.email}</p>
+        <DetailItem label={userData.city} />
+        <DetailItem label={userData.country} />
+        <DetailItem label={userData.phone} />
+        <DetailItem label={userData.email} />
       </div>
     </div>
   );

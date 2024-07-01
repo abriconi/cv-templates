@@ -1,5 +1,6 @@
 import { HeadingVertex } from "./HeadingVertex";
 import { useUserDataContext } from "../../../context/UserDataContext";
+import { DetailItemVertex } from "./DetailItemVertex";
 
 export const DetailsVertex = () => {
   const { userData } = useUserDataContext();
@@ -9,12 +10,10 @@ export const DetailsVertex = () => {
   return (
     <div className="flex flex-col items-start">
       <HeadingVertex tag="h2" title="Details" />
-      <p className="text-sm">{userData.city}</p>
-      <p className="text-sm">{userData.country}</p>
-      <p className="text-sm">{userData.phone}</p>
-      <p className="text-sm" style={{ color: "var(--primary-color)" }}>
-        {userData.email}
-      </p>
+      <DetailItemVertex label={userData.city} />
+      <DetailItemVertex label={userData.country} />
+      <DetailItemVertex label={userData.phone} />
+      <DetailItemVertex label={userData.email} color="var(--primary-color)" />
     </div>
   );
 };

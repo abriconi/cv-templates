@@ -4,7 +4,7 @@ import { SectionHeader } from "../../../shared-components/SectionHeader/SectionH
 export const SocialEcho = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.social || userData.social.length === 0) return null;
+  if (!userData?.social?.length) return null;
 
   return (
     <div className="flex flex-col gap-3 items-center">

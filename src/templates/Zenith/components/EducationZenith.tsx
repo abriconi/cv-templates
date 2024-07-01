@@ -5,7 +5,7 @@ import { HeadingZenith } from "./HeadingZenith";
 export const EducationZenith = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.education || userData.education.length === 0) return null;
+  if (!userData?.education?.length) return null;
   return (
     <div className="flex flex-col gap-2">
       <HeadingZenith tag="h2" title="Education" />

@@ -7,7 +7,7 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const LanguagesZenith = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.languages || userData.languages.length === 0) return null;
+  if (!userData?.languages?.length) return null;
 
   return (
     <WrapperShade>

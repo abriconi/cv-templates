@@ -5,7 +5,7 @@ import { HeadingLumina } from "./HeadingLumina";
 export const ExperienceLumina = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.experience || userData.experience.length === 0) return null;
+  if (!userData?.experience?.length) return null;
 
   return (
     <div className="flex flex-col gap-2 items-start">

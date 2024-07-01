@@ -5,7 +5,7 @@ import { SkillItem } from "../../../shared-components/SkillItem";
 export const SkillsEcho = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.skills || userData.skills.length === 0) return null;
+  if (!userData?.skills?.length) return null;
 
   return (
     <div className="w-full flex flex-col items-center gap-3">

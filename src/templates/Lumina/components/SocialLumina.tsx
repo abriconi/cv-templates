@@ -4,7 +4,7 @@ import { HeadingLumina } from "./HeadingLumina";
 export const SocialLumina = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.social || userData.social.length === 0) {
+  if (!userData?.social?.length) {
     return null;
   }
 

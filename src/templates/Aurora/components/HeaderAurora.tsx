@@ -1,6 +1,7 @@
 import { HeadingAurora } from "../../../shared-components/Heading";
 import { useUserDataContext } from "../../../context/UserDataContext";
 import { UserPhotoAurora } from "./UserPhotoAurora";
+import { DetailItemAurora } from "./DetailItemAurora";
 
 export const HeaderAurora = () => {
   const { userData } = useUserDataContext();
@@ -20,6 +21,8 @@ export const HeaderAurora = () => {
             <HeadingAurora tag="h2" title={`${userData.jobPosition}`} />
           </div>
           <div className="flex flex-col gap-1">
+            <DetailItemAurora firstLabel={userData.city} secondLabel={userData.country} />
+            <DetailItemAurora firstLabel={userData.phone} secondLabel={userData.email} />
             <p>
               {userData.city}, {userData.country}
             </p>

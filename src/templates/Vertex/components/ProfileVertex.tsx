@@ -6,7 +6,7 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const ProfileVertex = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.summary) return null;
+  if (!userData?.summary) return null;
 
   return (
     <div className="flex flex-col gap-2 items-start">

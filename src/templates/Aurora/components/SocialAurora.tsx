@@ -3,9 +3,9 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { useUserDataContext } from "../../../context/UserDataContext";
 
 export const SocialAurora = () => {
-  const { userData } = useUserDataContext();
+  const { userData } = useUserDataContext();  
 
-  if (!userData || !userData.social || userData.social.length === 0) return null;
+  if (!userData?.social?.length) return null;
 
   return (
     <div className="flex flex-col gap-2">

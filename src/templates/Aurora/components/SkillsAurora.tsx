@@ -5,7 +5,7 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const SkillsAurora = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.skills || userData.skills.length === 0) return null;
+  if (!userData?.skills?.length) return null;
 
   return (
     <div className="flex flex-col gap-2 items-start w-full">

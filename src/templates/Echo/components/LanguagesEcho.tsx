@@ -5,7 +5,7 @@ import { SectionHeader } from "../../../shared-components/SectionHeader/SectionH
 export const LanguagesEcho = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.languages || userData.languages.length === 0) return null;
+  if (!userData?.languages?.length) return null;
 
   return (
     <div className="w-full flex flex-col items-center gap-3">

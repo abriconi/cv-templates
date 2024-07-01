@@ -6,7 +6,7 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const SkillsZenith = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.skills || userData.skills.length === 0) return null;
+  if (!userData?.skills?.length) return null;
 
   return (
     <WrapperShade>

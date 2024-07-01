@@ -8,7 +8,7 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const ExperienceEcho = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.experience || userData.experience.length === 0) return null;
+  if (!userData?.experience?.length) return null;
 
   return (
     <div className="flex flex-col gap-4">

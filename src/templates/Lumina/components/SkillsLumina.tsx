@@ -5,7 +5,7 @@ import { SkillItemLumina } from "./SkillItemLumina";
 export const SkillsLumina = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.skills || userData.skills.length === 0) return null;
+  if (!userData?.skills?.length) return null;
 
   return (
     userData && (

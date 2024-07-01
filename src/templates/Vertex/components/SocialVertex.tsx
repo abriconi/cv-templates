@@ -4,7 +4,7 @@ import { HeadingVertex } from "./HeadingVertex";
 export const SocialVertex = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.social || userData.social.length === 0) return null;
+  if (!userData?.social?.length) return null;
 
   return (
     <div className="flex flex-col items-start gap-2">

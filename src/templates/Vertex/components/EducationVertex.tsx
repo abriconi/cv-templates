@@ -7,7 +7,7 @@ import { useUserDataContext } from "../../../context/UserDataContext";
 export const EducationVertex = () => {
   const { userData } = useUserDataContext();
 
-  if (!userData || !userData.education || userData.education.length === 0) return null;
+  if (!userData?.education?.length) return null;
 
   return (
     <div className="flex flex-col gap-2 items-start">
