@@ -2,20 +2,17 @@ import { useEffect } from "react";
 import { useUserDataContext } from "../../context/UserDataContext";
 import { TEMPLATES } from "../templateData";
 import { MESSAGE_TYPE } from "../enums";
-import { TemplateType, CvType } from "../types";
+import { TemplateType } from "../types";
 import { Routes } from "../routes";
 
 export const useTemplateEffects = (templateName: string) => {
   const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === templateName);
 
-  useEffect(() => receiveDataFromParent(setUserData), []);
-  useEffect(() => receiveUserPhotoFromParent(setUserPhoto), []);
+  useEffect(() => receiveDataFromParent(), []);
   useEffect(() => notifyParentTemplateUploaded(), []);
-  useEffect(() => addResizeListener(template?.name), []);
-  useEffect(() => sendColorsToParent(template), []);
-  useEffect(() => receiveColorFromParent());
-  useEffect(() => receivePrintFromParent());
+  useEffect(() => addResizeListener(template?.name), [template]);
+  useEffect(() => sendColorsToParent(template), [template]);
 
   const handleResize = (templateId: string) => {
     const zoomValue = (window.innerWidth / (document.getElementById(templateId)?.offsetWidth as number)).toFixed(4);
@@ -58,70 +55,34 @@ export const useTemplateEffects = (templateName: string) => {
     }
   };
 
-  const receiveDataFromParent = (setUserData: (data: CvType) => void) => {
+  const receiveDataFromParent = () => {
     const receiveMessage = (event: MessageEvent) => {
       if (event.origin !== Routes.Parent) return;
 
       const receivedData = event.data;
 
-      if (receivedData.type === MESSAGE_TYPE.userDataFromParentToIframe) {
+      switch (receivedData.type) {
+      case MESSAGE_TYPE.userDataFromParentToIframe:
         setUserData(receivedData.data);
-      }
-    };
+        break;
 
-    window.addEventListener("message", receiveMessage);
-
-    return () => {
-      window.removeEventListener("message", receiveMessage);
-    };
-  };
-
-  const receiveUserPhotoFromParent = (setUserPhoto: (photo: string) => void) => {
-    const receiveMessagePhoto = (event: MessageEvent) => {
-      if (event.origin !== Routes.Parent) return;
-
-      const receivedData = event.data;
-
-      if (receivedData.type === MESSAGE_TYPE.userPhotoToIframe) {
+      case MESSAGE_TYPE.userPhotoToIframe:
         setUserPhoto(receivedData.photo);
-      }
-    };
+        break;
 
-    window.addEventListener("message", receiveMessagePhoto);
-
-    return () => {
-      window.removeEventListener("message", receiveMessagePhoto);
-    };
-  };
-
-  const receivePrintFromParent = () => {
-    const receiveMessagePrint = (event: MessageEvent) => {
-      if (event.origin !== Routes.Parent) return;
-
-      const receivedData = event.data;
-
-      if (receivedData.type === "print") {
+      case MESSAGE_TYPE.print:
         window.print();
-      }
-    };
+        break;
 
-    window.addEventListener("message", receiveMessagePrint);
-
-    return () => {
-      window.removeEventListener("message", receiveMessagePrint);
-    };
-  };
-
-  const receiveColorFromParent = () => {
-    const receiveMessage = (event: MessageEvent) => {
-      if (event.origin !== Routes.Parent) return;
-
-      const receivedData = event.data;
-
-      if (receivedData.type === MESSAGE_TYPE.chosenColorToIframe) {
+      case MESSAGE_TYPE.chosenColorToIframe: {
         const root = document.documentElement;
         root.style.setProperty("--primary-color", receivedData.color.primary);
         root.style.setProperty("--primary-shade", receivedData.color.secondary);
+        break;
+      }
+
+      default:
+        break;
       }
     };
 

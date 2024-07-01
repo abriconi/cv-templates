@@ -22,4 +22,5 @@ export enum MESSAGE_TYPE {
   userPhotoToIframe = "user-photo-to-iframe",
   chosenColorToIframe = "chosen-color-to-iframe",
   colorsToParent = "colors-to-parent",
+  print = "print",
 }

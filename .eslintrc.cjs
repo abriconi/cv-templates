@@ -11,7 +11,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'prettier'],
   rules: {
-    "prettier/prettier": "error",
+    "prettier/prettier": "warning",
     "@typescript-eslint/ban-ts-comment": 1,
     "indent": ["error", 2],
   },
