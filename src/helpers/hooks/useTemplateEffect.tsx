@@ -9,6 +9,7 @@ export const useTemplateEffects = (templateName: string) => {
   const { setUserData, setUserPhoto } = useUserDataContext();
   const template = TEMPLATES.find((template) => template.name === templateName);
 
+  useEffect(() => sendScreenshotsToParent(template), []);
   useEffect(() => receiveDataFromParent(), []);
   useEffect(() => notifyParentTemplateUploaded(), []);
   useEffect(() => addResizeListener(template?.name), [template]);
@@ -91,5 +92,19 @@ export const useTemplateEffects = (templateName: string) => {
     return () => {
       window.removeEventListener("message", receiveMessage);
     };
+  };
+
+  const sendScreenshotsToParent = (template: TemplateType | undefined) => {
+    const screenshots = TEMPLATES.map((item) => item.screenshot);
+    
+    if (window.top && template) {
+      window.top.postMessage(
+        {
+          type: MESSAGE_TYPE.screenshotsToParent,
+          screenshots: screenshots,
+        },
+        "*",
+      );
+    }
   };
 };

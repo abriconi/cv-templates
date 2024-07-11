@@ -8,10 +8,12 @@ export enum TemplateName {
   ECHO = "echo",
   ZENITH = "zenith",
 }
+
 export const TEMPLATES: TemplateType[] = [
   {
     name: TemplateName.VERTEX,
     route: Routes.Vertex,
+    screenshot: "/img/vertex-screenshot.jpeg",
     colors: [
       {
         primary: "#0000FF",
@@ -30,6 +32,7 @@ export const TEMPLATES: TemplateType[] = [
   {
     name: TemplateName.LUMINA,
     route: Routes.Lumina,
+    screenshot: "/img/lumina-screenshot.jpeg",
     colors: [
       { primary: "#133337", secondary: "#a0adaf" },
       {
@@ -43,6 +46,7 @@ export const TEMPLATES: TemplateType[] = [
   {
     name: TemplateName.AURORA,
     route: Routes.Aurora,
+    screenshot: "/img/aurora-screenshot.jpeg",
     colors: [
       { primary: "#81D2C7", secondary: "#d9f1ee" },
       {
@@ -55,6 +59,7 @@ export const TEMPLATES: TemplateType[] = [
   {
     name: TemplateName.ECHO,
     route: Routes.Echo,
+    screenshot: "/img/echo-screenshot.jpeg",
     colors: [
       {
         primary: "#011f4b",
@@ -73,6 +78,7 @@ export const TEMPLATES: TemplateType[] = [
   {
     name: TemplateName.ZENITH,
     route: Routes.Zenith,
+    screenshot: "/img/zenith-screenshot.jpeg",
     colors: [
       {
         primary: "#42496A",

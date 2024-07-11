@@ -4,6 +4,7 @@ export interface ExperienceType {
   startDate: string;
   endDate: string;
   location: string;
+  isCurrentWork: boolean;
   description: string;
 }
 
@@ -13,6 +14,7 @@ export interface EducationType {
   startDate: string;
   endDate: string;
   location: string;
+  isCurrentStudy: boolean;
   description: string;
 }
 
@@ -55,4 +57,5 @@ export interface TemplateType {
   name: string;
   route: string;
   colors: ColorPalette[];
+  screenshot: string;
 }

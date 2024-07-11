@@ -1,6 +1,6 @@
 import { SKILL_LEVELS } from "./enums";
 
-export const dateFormatter = (date: string | undefined): string => {
+const dateFormatter = (date: string | undefined): string => {
   if (date) {
     const parsedDate = new Date(`${date}-01`);
     const formattedDate = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long" }).format(parsedDate);
@@ -37,5 +37,29 @@ export const determineSkillLevel = (skillLevel: string) => {
   }
   return result
 }
-        
 
+export const constructDescription = (
+  startDate: string,
+  endDate: string,
+  isCurrent: boolean,
+  place: string,
+  location: string,
+  workTitle?: string,
+) => {
+  const startDateFormatted = dateFormatter(startDate);
+  const endDateFormatted = isCurrent ? "current" : dateFormatter(endDate);
+  const dates = `${startDateFormatted}  - ${endDateFormatted}`;
+
+  let description = "";
+
+  if(workTitle) {
+    description = `${workTitle} at ${place}, ${location}`;
+  } else {
+    description = `${place}, ${location}`;
+  }
+
+  return {
+    description,
+    dates,
+  }
+}
